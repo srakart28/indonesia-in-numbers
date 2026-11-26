@@ -1,0 +1,202 @@
+/* Indonesia in Numbers — a clean official-statistics look: white cards on a pale grey page, a deep
+   red and ink-navy palette from the flag, tabular numbers, and a layout that folds to one column on
+   a phone. System fonts only, so nothing loads from the network. */
+
+:root {
+  --ink: #1c2733;
+  --faint: #5d6d7c;
+  --red: #b5341f;
+  --red-dark: #8f2817;
+  --page: #eef1f4;
+  --card: #ffffff;
+  --line: #d8dfe6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--page);
+  line-height: 1.5;
+}
+
+/* Header and navigation */
+.site-header {
+  background: #14202c;
+  color: #fff;
+  border-bottom: 4px solid var(--red);
+}
+.header-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 20px 20px 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 24px;
+}
+.brand {
+  color: #fff;
+  text-decoration: none;
+  font-size: 26px;
+  letter-spacing: 0.2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-mark {
+  width: 30px;
+  height: 22px;
+  background: linear-gradient(to bottom, var(--red) 0 50%, #fff 50% 100%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+  flex: none;
+}
+.brand-text strong { color: #f2b8a8; }
+.header-tag { margin: 0; color: #b9c6d2; font-size: 14px; }
+.site-nav {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 10px 12px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.site-nav a {
+  color: #dbe4ec;
+  text-decoration: none;
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-size: 15px;
+}
+.site-nav a:hover { background: rgba(255, 255, 255, 0.12); }
+.site-nav a.active { background: var(--red); color: #fff; font-weight: 600; }
+
+/* Page body */
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 22px 20px 8px;
+}
+.lede { font-size: 17px; max-width: 46em; margin: 2px 0 20px; }
+h2 { font-size: 20px; margin: 0 0 6px; }
+.section-heading { margin: 22px 0 12px; }
+
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin: 0 0 18px;
+}
+.card p { margin: 6px 0; max-width: 52em; }
+.chart-note { color: var(--faint); margin: 0 0 10px; font-size: 14px; }
+.chart-caption { color: var(--faint); font-size: 14px; margin: 10px 0 0; }
+canvas { display: block; width: 100%; }
+
+/* Headline statistics */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 0 0 18px;
+}
+.stat {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--red);
+  border-radius: 8px;
+  padding: 14px 16px 12px;
+}
+.stat-label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.stat-value {
+  margin: 4px 0 2px;
+  font-size: 34px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.stat-value-small { font-size: 23px; }
+.stat-unit { font-size: 16px; font-weight: 600; color: var(--faint); }
+.stat-note { margin: 0; font-size: 13px; color: var(--faint); }
+
+/* At-a-glance list */
+.glance { list-style: none; margin: 6px 0 0; padding: 0; }
+.glance li { padding: 7px 0; border-bottom: 1px solid var(--line); }
+.glance li:last-child { border-bottom: none; }
+.glance strong { display: inline-block; min-width: 190px; color: var(--red-dark); }
+
+/* Series toggle */
+.toggle { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; margin-bottom: 12px; }
+.toggle button {
+  border: 0;
+  background: #fff;
+  padding: 7px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--ink);
+}
+.toggle button.toggle-on { background: var(--red); color: #fff; font-weight: 600; }
+
+/* Province table */
+.table-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+  margin-bottom: 12px;
+}
+.table-tools input {
+  font-size: 15px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  min-width: 240px;
+}
+.table-count { margin: 0; color: var(--faint); font-size: 14px; }
+.table-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--faint); cursor: pointer; user-select: none; }
+th:hover { color: var(--red-dark); }
+th.sorted { color: var(--red-dark); }
+th.sorted::after { content: " " attr(data-dir); }
+td.num, th.num { text-align: right; }
+tbody tr:hover { background: #f6f8fa; }
+.table-note { color: var(--faint); font-size: 14px; margin: 12px 0 0; }
+
+/* Sources and footer */
+.sources { color: var(--faint); font-size: 13.5px; margin: 0 0 20px; }
+.site-footer {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 6px 20px 30px;
+  color: var(--faint);
+  font-size: 13.5px;
+}
+
+/* Phone layout: one column, smaller figures, the nav scrolls sideways. */
+@media (max-width: 640px) {
+  .brand { font-size: 21px; }
+  .header-tag { display: none; }
+  .site-nav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 10px; }
+  .site-nav a { white-space: nowrap; padding: 6px 11px; font-size: 14px; }
+  main { padding: 16px 12px 4px; }
+  .lede { font-size: 15.5px; }
+  .stat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat-value { font-size: 26px; }
+  .stat-value-small { font-size: 19px; }
+  .card { padding: 14px; }
+  .glance strong { min-width: 0; display: block; }
+  th, td { padding: 7px 8px; }
+}
